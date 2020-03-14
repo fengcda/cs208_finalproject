@@ -2,11 +2,25 @@
     <head>
         <title>SEARCH IT - The Reddit Search Engine</title>
         <style>
+            a {
+                font-size: 20px;
+	    }
+	    div[id = "date"] {
+		color: purple;
+		font-size: 30px;
+	        text-align: left;
+	    }
             div[id = "output"] {
                 font-size: 25px;
-		white-space: pre-wrap;
+		text-align: left;
+		white-space: pre-line;
             }
-            div:not(#output) {
+	    div[id = "title"] {
+		color: blue;
+                font-size: 40px;
+		text-align: left;
+            }
+            div:not(#date):not(#output):not(#title) {
                 color: blue;
                 font-size: 20px;
                 font-weight: bold;
@@ -72,7 +86,7 @@
                 function(response) {
                     $("#output").html(response);
                 }, "text").fail(function(xhr) {
-                    $("#output").html("[ERROR]\n" + xhr.responseText);
+			$("#output").html("[ERROR]\n" + xhr.responseText);
                 });
         }
     </script>

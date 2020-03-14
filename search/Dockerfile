@@ -18,9 +18,8 @@ RUN mkdir -p /data/db
 
 COPY app.py /app
 COPY search.py /app
-# COPY app.sh /app
 
-# EXPOSE 27017
+
 EXPOSE 5000
 
 CMD ["python", "app.py"]

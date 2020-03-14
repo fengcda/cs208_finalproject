@@ -60,18 +60,17 @@ def parsePost(post, results):
     results.append({'title':title, 'url':url, 'date':str(date), 'score':score,
                     'author':author, 'subreddit':subreddit, 'comments':commentTree})
 
-def search(term, subreddit):
+def search(keyword, subreddit):
     if subreddit == None or subreddit == '':
-        searchUrl = SITE_URL + 'search?q="' + term + '"'
+        searchUrl = SITE_URL + 'search?q="' + keyword + '"'
     else:
-        searchUrl = SITE_URL + 'r/' + subreddit + '/search?q="' + term + '"&restrict_sr=on'
+        searchUrl = SITE_URL + 'r/' + subreddit + '/search?q="' + keyword + '"&restrict_sr=on'
     searchUrl += '&t=' + 'day'
 
     product = {}
     print('Search URL:', searchUrl)
     posts = getSearchResults(searchUrl)
     print('Started scraping', len(posts), 'posts.')
-    keyword = term.replace(' ', '-')
     product[keyword] = {}
     product[keyword]['subreddit'] = 'all' if subreddit == None or subreddit == '' else subreddit
     results = Manager().list()
@@ -83,5 +82,5 @@ def search(term, subreddit):
     for job in jobs:
         job.join()
     product[keyword]['posts'] = list(results)
-    # print(product)
-    return keyword, product
+
+    return product
