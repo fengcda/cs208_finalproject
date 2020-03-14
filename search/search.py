@@ -83,5 +83,5 @@ def search(term, subreddit):
     for job in jobs:
         job.join()
     product[keyword]['posts'] = list(results)
-
+    # print(product)
     return keyword, product

@@ -3,7 +3,7 @@ FROM ubuntu
 RUN apt-get update
 RUN apt-get install -y python-pip python-dev
 RUN apt-get install -y python3-bs4
-RUN apt-get install -y mongodb
+# RUN apt-get install -y mongodb
 
 WORKDIR /app
 
@@ -18,8 +18,9 @@ RUN mkdir -p /data/db
 
 COPY app.py /app
 COPY search.py /app
-COPY app.sh /app
+# COPY app.sh /app
 
-EXPOSE 27017
+# EXPOSE 27017
+EXPOSE 5000
 
-CMD ["bash", "app.sh"]
+CMD ["python", "app.py"]

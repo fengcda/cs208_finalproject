@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: search
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: search
+  template:
+    metadata:
+      labels:
+        app: search
+    spec:
+      containers:
+        - name: app
+          image: dfeng007/search:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: MONGO_URL
+              value: mongodb://mongo:27017/
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: search
+spec:
+  selector:
+    app: search
+  ports:
+    - port: 5000
+      targetPort: 5000
+  type: LoadBalancer
