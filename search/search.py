@@ -65,7 +65,7 @@ def search(keyword, subreddit):
         searchUrl = SITE_URL + 'search?q="' + keyword + '"'
     else:
         searchUrl = SITE_URL + 'r/' + subreddit + '/search?q="' + keyword + '"&restrict_sr=on'
-    searchUrl += '&t=' + 'day'
+    searchUrl += '&t=' + 'week'
 
     product = {}
     print('Search URL:', searchUrl)
